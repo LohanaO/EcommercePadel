@@ -1,0 +1,34 @@
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #5DDFC3;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    
+  
+
+}
+
+h1{
+    color: white;
+}
+
+li{
+    display: inline-block;
+    margin-left: 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor:pointer;
+   
+    
+}
+
+li:hover{
+    color: white;
+}
+
+.image{
+    width: 12rem;
+}
