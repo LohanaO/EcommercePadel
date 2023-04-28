@@ -21,6 +21,7 @@ li{
     font-weight: bold;
     text-transform: uppercase;
     cursor:pointer;
+    transition: 5ms;
    
     
 }
