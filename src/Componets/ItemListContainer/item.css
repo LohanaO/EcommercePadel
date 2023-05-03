@@ -1,0 +1,29 @@
+
+
+.card{
+    width: 200px;
+    height: 100px;
+    background-color:#f7f7f7;
+    margin-left: 2rem;
+    display: inline-block;
+   
+ 
+}
+
+.card button{
+    width: 30px;
+    height: 30px;
+   
+
+}
+
+.card span{
+    margin: auto;
+}
+
+
+
+.btnagregar{
+    margin-top: 4rem;
+}
+

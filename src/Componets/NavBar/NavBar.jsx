@@ -1,13 +1,13 @@
 import React from 'react'
 import './NavBar.css'
-import imagen from '../../imagen.png'
+
 import CardWidget from '../CardWidget/CardWidget'
 
 const NavBar = () => {
    
   return (
     <header >
-        <h1>PADEL STORE  <img className='image' src={imagen} alt='Logo Padel'/></h1>
+        <h1>PADEL STORE  <img className='image' src={'img/imagen.png'} alt='Logo Padel'/></h1>
        
 
         <nav className=''>
