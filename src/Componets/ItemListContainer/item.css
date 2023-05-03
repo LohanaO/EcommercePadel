@@ -1,18 +1,35 @@
 
+.contenedor {
+    display: flex;
+    align-items: center; 
+    gap: 2rem;
 
+    
+}
 .card{
     width: 200px;
     height: 100px;
     background-color:#f7f7f7;
     margin-left: 2rem;
-    display: inline-block;
+    display: flex;
+    flex-direction: row;
+
+    
+    
+ 
    
  
 }
 
+
+
 .card button{
     width: 30px;
     height: 30px;
+    margin: auto;
+    background-color: white;
+    
+    
    
 
 }
@@ -23,7 +40,13 @@
 
 
 
-.btnagregar{
-    margin-top: 4rem;
+.btncar{
+    background-color:#262161;
+    padding: 0.5rem;
+    color: white;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    border: solid 1px #5DDFC3;
+    text-align: center;
 }
 
