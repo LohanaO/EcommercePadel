@@ -48,5 +48,10 @@
     border-radius: 10px;
     border: solid 1px #5DDFC3;
     text-align: center;
+    transition: 200ms ease-in-out;
+}
+
+.btncar:hover{
+    color: #5DDFC3;
 }
 
