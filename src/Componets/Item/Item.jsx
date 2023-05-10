@@ -12,7 +12,7 @@ const Item = ({id, nombre, precio, img}) => {
       <CardActionArea>
         <CardMedia style={{objectFit: 'contain'}}
           component="img"
-          height="170"
+          height="200"
           image={img}
           alt={nombre}
           
