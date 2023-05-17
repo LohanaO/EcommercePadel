@@ -1,5 +1,6 @@
 import React from 'react'
 import './NavBar.css'
+import { NavLink, Link } from 'react-router-dom'
 
 import CardWidget from '../CardWidget/CardWidget'
 
@@ -7,16 +8,24 @@ const NavBar = () => {
    
   return (
     <header >
-        <h1>PADEL STORE  <img className='image' src={'img/imagen.png'} alt='Logo Padel'/></h1>
-       
+    <Link to={"/"} style={{textDecoration:'none'}}>
+        <h1>PADEL STORE  <img className='image' src={'../img/imagen.png'} alt='Logo Padel'/></h1>
+    </Link>
 
-        <nav className=''>
+        <nav>
             <ul>
-                <li>Home</li>
-                <li>¿Quienes somos?</li>
-                <li>Indumentaria</li>
-                <li>Productos</li>
-                <li>Contacto</li>
+              <li>
+                <NavLink className={'NavLink'} to={"/"}>Home</NavLink>
+              </li>
+              <li>
+                <NavLink className={'NavLink'} to={`/categoria/2`}>Indumentaria</NavLink>
+              </li>
+              <li>
+                <NavLink className={'NavLink'} to={`/categoria/1`}>Paletas</NavLink>
+              </li>
+              <li>
+                <NavLink className={'NavLink'} to={"/"}>Contacto</NavLink>
+              </li>
             </ul>
         </nav>
         <CardWidget/>

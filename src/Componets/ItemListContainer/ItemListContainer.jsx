@@ -2,20 +2,27 @@ import {useState,useEffect} from 'react'
 import ItemCount from './ItemCount'
 import ItemList from '../ItemList/ItemList'
 import { Typography } from '@mui/material'
-import { getProductos } from '../../asincmock'
+import { getProductos, getProductoCatgoria } from '../../asincmock'
+import { useParams } from 'react-router-dom'
+
 
 
 
 
 const ItemListContainer = ({greeting}) => {
   const [productos, setProductos] = useState([]);
+  const {idCat}= useParams();
 
   useEffect(() => {
-    getProductos()
+
+  const funcionProductos = idCat ? getProductoCatgoria : getProductos;
+
+  
+          funcionProductos(idCat)
       .then(respuesta =>setProductos(respuesta))
       .catch(error => console.error(error))
     
-  }, []);
+  }, [idCat]);
 
   return (
     <div>

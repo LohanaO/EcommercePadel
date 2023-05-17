@@ -1,11 +1,12 @@
 import React from 'react'
 import { Card, CardActionArea, CardContent, CardMedia, Typography} from '@mui/material'
+import ItemCount from '../ItemListContainer/ItemCount'
 
 const ItemDetail = ({id, nombre, precio, img, description}) => {
   return (
         <div style={{marginTop:'20px'}}>
               <Card sx={{ width: 800 }}>
-      <CardActionArea>
+      
         <CardMedia sx={{objectFit: 'contain'}}
           component="img"
           height="300"
@@ -24,8 +25,10 @@ const ItemDetail = ({id, nombre, precio, img, description}) => {
           <Typography variant="body2" color="text.secondary">
           {description}
           </Typography>
+          <ItemCount stock={10} initial={1} />
         </CardContent>
-      </CardActionArea>
+     
+      
     </Card>
   );
         </div>

@@ -23,6 +23,7 @@ li{
     cursor:pointer;
     transition: 5ms;
    
+   
     
 }
 
@@ -32,4 +33,14 @@ li:hover{
 
 .image{
     width: 12rem;
+}
+
+.NavLink{
+    text-decoration: none;
+    color: black;
+    transition: all  0.3s ease-in-out;
+}
+
+.NavLink:hover{
+    color: white;
 }
