@@ -57,8 +57,8 @@ const CheckOut = () => {
         const prodRef= doc(db,"productos", prodOrder.id);
         const prodDoc= await getDoc(prodRef);
         
-        const stockActual= prodDoc.data().stock;
-        console.log(stockActual);
+        const stockActual= prodDoc.data().stock
+       
         await updateDoc(prodRef,{ stock: stockActual - prodOrder.cantidad,
         })
         
@@ -66,7 +66,7 @@ const CheckOut = () => {
     )
     
     .then(()=>{
-        addDoc(collection,"ordenes",order)
+        addDoc(collection(db,"ordenes"),order)
         .then((docRef)=>{
             setOrderId(docRef);
             emptyCart();
