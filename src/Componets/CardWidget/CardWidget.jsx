@@ -1,18 +1,25 @@
-import React from 'react'
-import ItemCount from '../ItemListContainer/ItemCount'
+import {useContext} from 'react'
+import { ContextCart } from '../../Context/CartContext'
+import { Link } from 'react-router-dom'
+
 
 import './CardWidget.css'
 
 const CardWidget = () => {
-
+const {totalQuantity} = useContext(ContextCart);
   
    
   return (
-    <div className='CarroContainer'>
-      <i class="bi bi-cart4 carro"></i>
-      <div className='numero'>
-        <strong>3</strong>
-      </div>
+    <div>
+      <Link to={'/Cart'} className='CarroContainer'>
+        <i class="bi bi-cart4 carro"></i>
+        <div className='numero'>
+        {
+          totalQuantity > 0 && <strong>{totalQuantity}</strong>
+        }
+         
+        </div>
+      </Link>
     </div>
   )
 }

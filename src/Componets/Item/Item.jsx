@@ -46,9 +46,7 @@ const Item = ({ id, nombre, precio, img }) => {
           </Typography>
           
             <Link to={`/item/${id}`}
-              style={{ backgroundColor: "#262161", color: "white" }}
-              variant="outlined"
-              href="#outlined-buttons"
+              style={{textDecoration: "none"}}
             >
               Mas detalles
             </Link>

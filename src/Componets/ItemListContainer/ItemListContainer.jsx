@@ -1,37 +1,45 @@
-import {useState,useEffect} from 'react'
-import ItemCount from './ItemCount'
-import ItemList from '../ItemList/ItemList'
-import { Typography } from '@mui/material'
-import { getProductos, getProductoCatgoria } from '../../asincmock'
-import { useParams } from 'react-router-dom'
+import { useState, useEffect } from "react";
+import ItemList from "../ItemList/ItemList";
+import { Typography } from "@mui/material";
+import { useParams } from "react-router-dom";
+//Imports of firebase.
+import { collection, getDocs, where, query } from "firebase/firestore";
+import { db } from "../../services/Config";
 
-
-
-
-
-const ItemListContainer = ({greeting}) => {
+const ItemListContainer = ({ greeting }) => {
   const [productos, setProductos] = useState([]);
-  const {Cat}= useParams();
+
+  const { Cat } = useParams();
 
   useEffect(() => {
-
-  const funcionProductos = Cat ? getProductoCatgoria : getProductos;
-
-  
-          funcionProductos(Cat)
-      .then(respuesta =>setProductos(respuesta))
-      .catch(error => console.error(error))
-    
+    const myProducts = Cat
+      ? query(collection(db, "productos"), where("cat", "==", Cat))
+      : collection(db, "productos");
+    getDocs(myProducts)
+      .then((res) => {
+        const newProducts = res.docs.map((doc) => {
+          const data = doc.data();
+          return { id: doc.id, ...data };
+        });
+        setProductos(newProducts)
+      })
+      .catch((err) => console.error(err));
   }, [Cat]);
 
   return (
     <div>
-    <Typography variant='h3' align='center' fontWeight={'bold'} textTransform={'uppercase'}>{greeting}</Typography>
-    {/*<ItemCount initial={1} stock={10}/>*/}
-    <ItemList productos={productos}/>
-  
+      <Typography
+        variant="h3"
+        align="center"
+        fontWeight={"bold"}
+        textTransform={"uppercase"}
+      >
+        {greeting}
+      </Typography>
+      {/*<ItemCount initial={1} stock={10}/>*/}
+      <ItemList productos={productos} />
     </div>
-  )
-}
+  );
+};
 
-export default ItemListContainer
+export default ItemListContainer;
