@@ -36,7 +36,7 @@ const ItemListContainer = ({ greeting }) => {
       >
         {greeting}
       </Typography>
-      {/*<ItemCount initial={1} stock={10}/>*/}
+     
       <ItemList productos={productos} />
     </div>
   );

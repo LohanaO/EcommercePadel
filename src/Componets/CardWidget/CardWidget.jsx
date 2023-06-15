@@ -10,10 +10,10 @@ const {totalQuantity} = useContext(ContextCart);
   
    
   return (
-    <div>
+    <div >
       <Link to={'/Cart'} className='CarroContainer'>
         <i class="bi bi-cart4 carro"></i>
-        <div className='numero'>
+        <div className={totalQuantity ? "numero" : " "}>
         {
           totalQuantity > 0 && <strong>{totalQuantity}</strong>
         }

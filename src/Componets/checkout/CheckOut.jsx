@@ -2,6 +2,10 @@ import { useState, useContext } from "react";
 import { ContextCart } from "../../Context/CartContext";
 import { db } from "../../services/Config";
 import { collection, addDoc, doc, updateDoc, getDoc } from "firebase/firestore";
+import { TextField } from "@mui/material";
+import './Checkout.css'
+import Swal from 'sweetalert2';
+import { useNavigate } from "react-router-dom";
 
 const initialValues = {
   nombre: "",
@@ -16,6 +20,8 @@ const CheckOut = () => {
   const { nombre, lastName, phone, email, emailConfirmation } = values;
   const [error, setError] = useState("");
   const [orderId, setOrderId] = useState("");
+  const [fecha, setFecha] = useState(null);
+  const navigate = useNavigate();
 
   const handleInputChange = (event) => {
     const changeValues = {
@@ -68,7 +74,9 @@ const CheckOut = () => {
     .then(()=>{
         addDoc(collection(db,"ordenes"),order)
         .then((docRef)=>{
-            setOrderId(docRef);
+            setOrderId(docRef.id);
+            setFecha(docRef.fecha);
+           
             emptyCart();
         })
         .catch((err)=>{
@@ -80,15 +88,28 @@ const CheckOut = () => {
         console.error("Error al actualizar stock",err);
         setError("se produjo un error al actualizar stock");
 });
-    
-  }
+setValues(initialValues);
 
+
+  }
+  setTimeout(() => {
+    setError(null);
+  }, 2500);
+const mostrarTicket=()=>{
+  Swal.fire({
+    title: 'Gracias por su compra',
+    
+    html: `<p>${fecha}<p/>,<p><b>Su número de orden es:<b/> ${orderId} <p/>`,
+    icon:'success',
+   
+})
+}
   return (
-    <div>
-      <h2>Checkout</h2>
-      <form onSubmit={handleForm}>
+    <div className="container-fluid ">
+      <h2 className="text-center">Checkout</h2>
+      <form className="form " onSubmit={handleForm}>
         {cart.map((prod) => (
-          <div key={prod.item.id}>
+          <div key={prod.item.id} className="fs-4 fw-bold">
             <p>
               {prod.item.nombre} x {prod.cantidad}
             </p>
@@ -96,60 +117,58 @@ const CheckOut = () => {
             <hr />
           </div>
         ))}
-        <p>Total: {total}</p>
+        <p className="fs-2 fw-bold">Total: ${total}</p>
         <hr />
-        <div>
-          <label>Nombre</label>
-          <input
+        <div className="container-fluid inputs">
+        <TextField id="standard-basic" label="Nombre" variant="standard" 
+         
+       
             type="text"
             name="nombre"
             value={nombre}
             onChange={handleInputChange}
           />
-        </div>
-        <div>
-          <label>Apellido</label>
-          <input
+       
+        <TextField id="standard-basic" label="Apellido" variant="standard"  
+         
             type="text"
             name="lastName"
             value={lastName}
             onChange={handleInputChange}
-          />
-        </div>
-        <div>
-          <label>Telefono</label>
-          <input
+        
+        />
+         <TextField id="standard-basic" label="Telefono" variant="standard"
+          
             type="text"
             name="phone"
             value={phone}
             onChange={handleInputChange}
           />
-        </div>
-        <div>
-          <label>Correo electrónico</label>
-          <input
+       
+       <TextField id="standard-basic" label="Correo Electronico" variant="standard"
+        
             type="email"
             value={email}
             name="email"
             onChange={handleInputChange}
           />
-        </div>
-        <div>
-          <label>Confirmación correo electrónico</label>
-          <input
+       
+       <TextField id="standard-basic" label="Confirmacion Correo " variant="standard"
+
             type="email"
             value={emailConfirmation}
             name="emailConfirmation"
             onChange={handleInputChange}
           />
+        
+   
+        {error && <p className="alert alert-danger"> {error} </p>}
+        <button style={{width:'40%'}} className="btn btn-link"  data-bs-toggle="modal" data-bs-target="#exampleModal" type="submit"> Finalizar Compra </button>
         </div>
-        {error && <p style={{ color: "red" }}> {error} </p>}
-        <button type="submit"> Finalizar Compra </button>
       </form>
       {orderId && (
-        <strong style={{ color: "black" }}>
-          Gracias por su compra! Su numero de Orden es: {orderId}{" "}
-        </strong>
+      
+        mostrarTicket()
       )}
     </div>
   );

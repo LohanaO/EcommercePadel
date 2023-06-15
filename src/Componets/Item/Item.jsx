@@ -1,11 +1,10 @@
 import {
   Card,
   CardActionArea,
-  CardActions,
   CardContent,
   CardMedia,
   Typography,
-  Button,
+
 } from "@mui/material";
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
@@ -13,12 +12,13 @@ import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 
 import { Link } from "react-router-dom";
+import './Item.css'
 
 const Item = ({ id, nombre, precio, img }) => {
   return (
     <Card sx={{ width: 400 }}>
       <CardActionArea>
-        <CardMedia
+        <CardMedia className="img"
           style={{ objectFit: "contain" }}
           component="img"
           height="200"
@@ -44,12 +44,14 @@ const Item = ({ id, nombre, precio, img }) => {
           >
             ${precio}
           </Typography>
-          
+            <div className="btn">
             <Link to={`/item/${id}`}
               style={{textDecoration: "none"}}
-            >
-              Mas detalles
+            className=" btn-link">
+              Ver mas detalles
             </Link>
+         
+            </div>
           
         </CardContent>
       </CardActionArea>

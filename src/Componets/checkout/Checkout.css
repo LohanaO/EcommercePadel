@@ -1,0 +1,10 @@
+.inputs{
+    
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 1rem;
+        Width: 50%;
+        margin: 0 auto;
+      
+}
