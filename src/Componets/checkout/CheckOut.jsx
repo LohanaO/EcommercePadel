@@ -173,9 +173,9 @@ const mostrarTicket=()=>{
         <Button style={{Maxwidth:'60%', margin:'0 auto'}} className="btn btn-link"  data-bs-toggle="modal" data-bs-target="#exampleModal" type="submit"> Finalizar Compra </Button>
         </div>
       </form>
-      {orderId && (
+      {orderId && values (
       
-        mostrarTicket()
+         mostrarTicket()
       )}
     </Container>
   );

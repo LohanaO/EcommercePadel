@@ -32,7 +32,7 @@ const isCategoriaIndumentaria = location.pathname.includes('categoria/indumentar
   }, [Cat]);
 
   return (
-    <Container className={isCategoriaValida ? 'ruta': ''} >
+    <Container >
       <Typography
         variant="h3"
         align="center"
