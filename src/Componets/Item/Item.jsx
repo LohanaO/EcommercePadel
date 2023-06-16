@@ -14,9 +14,11 @@ import "@fontsource/roboto/700.css";
 import { Link } from "react-router-dom";
 import './Item.css'
 
+
 const Item = ({ id, nombre, precio, img }) => {
   return (
-    <Card sx={{ width: 400 }}>
+    
+    <Card sx={{ width: 400 }} >
       <CardActionArea>
         <CardMedia className="img"
           style={{ objectFit: "contain" }}
@@ -56,6 +58,7 @@ const Item = ({ id, nombre, precio, img }) => {
         </CardContent>
       </CardActionArea>
     </Card>
+    
   );
 };
 

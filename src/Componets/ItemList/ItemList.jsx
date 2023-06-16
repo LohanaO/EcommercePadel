@@ -9,7 +9,9 @@ const itemList = ({productos}) => {
    flexWrap:'wrap',
    alignContent:'center', 
    gap:'20px',
-   marginTop:'20px'}}>
+   marginTop:'20px',
+   marginBotton:'2rem'
+   }}>
     {productos.map(producto =><Item key={producto.id} {...producto}/>)}
   </div>
   )

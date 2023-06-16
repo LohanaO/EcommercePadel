@@ -1,17 +1,11 @@
-import React from "react";
-import {
-  Card,
-  CardContent,
-  CardMedia,
-  Typography,
-  Container
-} from "@mui/material";
+import React from "react"
 import ItemCount from "../ItemListContainer/ItemCount";
 import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { ContextCart } from "../../Context/CartContext";
 import './ItemDetail.css'
+import { Button, Col, Container, Image, Row,  } from "react-bootstrap";
 
 const ItemDetail = ({ id, nombre, precio, img, description, stock }) => {
   // Estado Addcantidad
@@ -33,12 +27,44 @@ const ItemDetail = ({ id, nombre, precio, img, description, stock }) => {
   }
   return (
 
+<Container>
+      <Row>
+        <Col xs={12} md={6}>
+          <Image src={img} alt={nombre} fluid />
+        </Col>
+        <Col xs={12} md={6}>
+          <h2 className="text-center">{nombre}</h2>
+          <p className="descripcion">{description}</p>
+          <p className="fs-2 fw-bold" >${precio}</p>
+          {addCantidad ? (
+          <Container className="justify-content-between">
+           <Link className=" btn  btn-link"  to="/cart"> Terminar Compra </Link>
+           <Button className=" btn btn-link"  onClick={handleShopping}> Seguir Comprando </Button>
+           </Container>
+           ) : 
+             (
+             <ItemCount  initial={1} stock={stock} onAdd={onAdd}  />
+             
+             )
+           }
+           <p className="stock">Stock disponible {stock} {stock===1 ? 'unidad': 'unidades'}</p>
+         
+        </Col>
+      </Row>
+    </Container>
+   
+   
+  );
+};
 
-   <div className="container p-4">
+export default ItemDetail;
+
+/*
+<div className="container-fluid d-flex justify-content-center align-items-center p-4">
    <div className="row">
 
-     <div className="col-lg-6">
-       <img style={{ maxWidth: '80%' }} src={img} alt={nombre} className="img-fluid img"/>
+     <div className="col-xs-12 col-lg-6">
+       <img style={{ maxWidth: '70%' }} src={img} alt={nombre} className="img-fluid img"/>
      </div>
     
      <div className="col-lg-6 p-4">
@@ -59,16 +85,12 @@ const ItemDetail = ({ id, nombre, precio, img, description, stock }) => {
            </div>
            ) : 
              (
-             <ItemCount initial={1} stock={stock} onAdd={onAdd} />
+             <ItemCount initial={1} stock={stock} onAdd={onAdd}  />
              
              )
            }
+           <p style={{marginLeft:'2rem'}}>Stock disponible {stock} {stock===1 ? 'unidad': 'unidades'}</p>
    </div>
    </div>
    </div>
-        
-   
-  );
-};
-
-export default ItemDetail;
+*/  

@@ -5,7 +5,7 @@ import {getFirestore} from "firebase/firestore";
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBtRxfbfybyqFHP1PmOOYTh-l8znRJ1Z0s",
+  apiKey:  process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: "boompadle.firebaseapp.com",
   projectId: "boompadle",
   storageBucket: "boompadle.appspot.com",

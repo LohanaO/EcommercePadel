@@ -6,6 +6,7 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import { CartProvider } from './Context/CartContext';
 import Cart from './Componets/cart/Cart';
 import CheckOut from './Componets/checkout/CheckOut';
+import Footer from './Componets/footer/Footer';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path='cart/checkout' element={<CheckOut/>}/>
         <Route path='*' element={<h3> Este sitio se encuentra en construcción</h3>}/>
       </Routes>
+      <Footer/>
       </CartProvider>
     </BrowserRouter>
    

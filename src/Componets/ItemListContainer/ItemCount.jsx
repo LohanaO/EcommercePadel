@@ -1,5 +1,6 @@
 import {useState} from 'react'
-import './item.css'
+import './Count.css'
+import { Button, Card, Container } from 'react-bootstrap';
 
 const ItemCount = ({stock, initial, onAdd}) => {
     const [contador, setContador] = useState(initial);
@@ -19,17 +20,18 @@ const ItemCount = ({stock, initial, onAdd}) => {
    
 
   return (
-    <div className='contenedor'>
-        <div className='card'>
-            <button onClick={DisminuirContador}> - </button>
+    <Container className="justify-content-between">
+        
+        <Card className='card'>
+            <Button className='button' s onClick={DisminuirContador}> - </Button>
             <span >{contador}</span>
-            <button  onClick={aumentarContador}> + </button>
-        </div>
+            <Button className='button'  onClick={aumentarContador}> + </Button>
+        </Card>
       
-            <button className='btn btn-cart' onClick={() => onAdd(contador)} >Agregar al carritto</button>
+            <Button className='  btn-link' disabled={stock===0} onClick={() =>onAdd(contador)} >Agregar al carritto</Button>
         
         
-    </div>
+    </Container>
   )
 }
 

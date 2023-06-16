@@ -1,15 +1,20 @@
 import { useState, useEffect } from "react";
 import ItemList from "../ItemList/ItemList";
 import { Typography } from "@mui/material";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 //Imports of firebase.
 import { collection, getDocs, where, query } from "firebase/firestore";
 import { db } from "../../services/Config";
+import { Container } from "react-bootstrap";
 
 const ItemListContainer = ({ greeting }) => {
   const [productos, setProductos] = useState([]);
 
   const { Cat } = useParams();
+const location= useLocation();
+const isCategoriaIndumentaria = location.pathname.includes('categoria/indumentaria');
+  const isCategoriaPaletas = location.pathname.includes('categoria/paletas');
+  const isCategoriaValida = isCategoriaIndumentaria || isCategoriaPaletas;
 
   useEffect(() => {
     const myProducts = Cat
@@ -27,7 +32,7 @@ const ItemListContainer = ({ greeting }) => {
   }, [Cat]);
 
   return (
-    <div>
+    <Container className={isCategoriaValida ? 'ruta': ''} >
       <Typography
         variant="h3"
         align="center"
@@ -38,7 +43,7 @@ const ItemListContainer = ({ greeting }) => {
       </Typography>
      
       <ItemList productos={productos} />
-    </div>
+    </Container>
   );
 };
 

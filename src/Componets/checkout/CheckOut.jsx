@@ -2,10 +2,11 @@ import { useState, useContext } from "react";
 import { ContextCart } from "../../Context/CartContext";
 import { db } from "../../services/Config";
 import { collection, addDoc, doc, updateDoc, getDoc } from "firebase/firestore";
-import { TextField } from "@mui/material";
+import { Container, TextField } from "@mui/material";
 import './Checkout.css'
 import Swal from 'sweetalert2';
-import { useNavigate } from "react-router-dom";
+import { Button } from "react-bootstrap";
+
 
 const initialValues = {
   nombre: "",
@@ -20,8 +21,8 @@ const CheckOut = () => {
   const { nombre, lastName, phone, email, emailConfirmation } = values;
   const [error, setError] = useState("");
   const [orderId, setOrderId] = useState("");
-  const [fecha, setFecha] = useState(null);
-  const navigate = useNavigate();
+  const [fecha, setFecha] = useState(new Date());
+  
 
   const handleInputChange = (event) => {
     const changeValues = {
@@ -75,9 +76,10 @@ const CheckOut = () => {
         addDoc(collection(db,"ordenes"),order)
         .then((docRef)=>{
             setOrderId(docRef.id);
-            setFecha(docRef.fecha);
+            
            
             emptyCart();
+            setValues(initialValues);
         })
         .catch((err)=>{
             console.error("Error al crear la orden",err);
@@ -88,10 +90,12 @@ const CheckOut = () => {
         console.error("Error al actualizar stock",err);
         setError("se produjo un error al actualizar stock");
 });
-setValues(initialValues);
+
+
 
 
   }
+
   setTimeout(() => {
     setError(null);
   }, 2500);
@@ -99,13 +103,13 @@ const mostrarTicket=()=>{
   Swal.fire({
     title: 'Gracias por su compra',
     
-    html: `<p>${fecha}<p/>,<p><b>Su número de orden es:<b/> ${orderId} <p/>`,
+    html: `<p>${fecha.toDateString()}<p/>,<p><b>Su número de orden es:<b/> ${orderId} <p/>`,
     icon:'success',
    
 })
 }
   return (
-    <div className="container-fluid ">
+    <Container className="container-fluid mt-4 ">
       <h2 className="text-center">Checkout</h2>
       <form className="form " onSubmit={handleForm}>
         {cart.map((prod) => (
@@ -117,7 +121,10 @@ const mostrarTicket=()=>{
             <hr />
           </div>
         ))}
-        <p className="fs-2 fw-bold">Total: ${total}</p>
+          {
+            (total === 0) ? "" 
+            : <p className="fs-2 fw-bold">Total: ${total}</p>
+          }
         <hr />
         <div className="container-fluid inputs">
         <TextField id="standard-basic" label="Nombre" variant="standard" 
@@ -163,14 +170,14 @@ const mostrarTicket=()=>{
         
    
         {error && <p className="alert alert-danger"> {error} </p>}
-        <button style={{width:'40%'}} className="btn btn-link"  data-bs-toggle="modal" data-bs-target="#exampleModal" type="submit"> Finalizar Compra </button>
+        <Button style={{Maxwidth:'60%', margin:'0 auto'}} className="btn btn-link"  data-bs-toggle="modal" data-bs-target="#exampleModal" type="submit"> Finalizar Compra </Button>
         </div>
       </form>
       {orderId && (
       
         mostrarTicket()
       )}
-    </div>
+    </Container>
   );
 };
 
