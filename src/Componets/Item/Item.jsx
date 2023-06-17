@@ -15,7 +15,7 @@ import { Link } from "react-router-dom";
 import './Item.css'
 
 
-const Item = ({ id, nombre, precio, img }) => {
+const Item = ({ id, nombre, precio, img, stock }) => {
   return (
     
     <Card sx={{ width: 400 }} >
@@ -46,6 +46,8 @@ const Item = ({ id, nombre, precio, img }) => {
           >
             ${precio}
           </Typography>
+          
+
             <div className="btn">
             <Link to={`/item/${id}`}
               style={{textDecoration: "none"}}
@@ -54,7 +56,14 @@ const Item = ({ id, nombre, precio, img }) => {
             </Link>
          
             </div>
-          
+            <Typography
+            variant="h6"
+            align="center"
+            color={"red"}
+            fontWeight={"500"}
+          >
+           {stock==0 ? "No hay stock": ""}
+          </Typography>
         </CardContent>
       </CardActionArea>
     </Card>

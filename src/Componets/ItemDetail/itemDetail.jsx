@@ -37,9 +37,16 @@ const ItemDetail = ({ id, nombre, precio, img, description, stock }) => {
           <p className="descripcion">{description}</p>
           <p className="fs-2 fw-bold" >${precio}</p>
           {addCantidad ? (
-          <Container className="justify-content-between">
+          <Container className="justify-content-center">
+          <Row>
+          <Col xs={12} md="auto" className="mb-2">
            <Link className=" btn  btn-link"  to="/cart"> Terminar Compra </Link>
+           </Col>
+           <Col xs={12} md="auto" className="mb-2">
            <Button className=" btn btn-link"  onClick={handleShopping}> Seguir Comprando </Button>
+           </Col>
+           
+           </Row>
            </Container>
            ) : 
              (

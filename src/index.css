@@ -8,7 +8,7 @@
 
 body{
  background-color:azure;
- height:calc(100vh - 89px - 88px);
+ min-height:calc(100vh - 89px - 88px);
  
 }
 

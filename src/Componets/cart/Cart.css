@@ -1,15 +1,8 @@
 @media (max-width : 778px) {
     
+.btn-link{
+    padding: 5px;
+   
 }
 
-.cart{
-    width: 60vw;
-    
-
-}
-
-.cart Button{
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }

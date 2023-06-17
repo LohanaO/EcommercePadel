@@ -20,7 +20,7 @@ const ItemCount = ({stock, initial, onAdd}) => {
    
 
   return (
-    <Container className="justify-content-between">
+    <Container  className="justify-content-between">
         
         <Card className='card'>
             <Button className='button' s onClick={DisminuirContador}> - </Button>
@@ -28,7 +28,7 @@ const ItemCount = ({stock, initial, onAdd}) => {
             <Button className='button'  onClick={aumentarContador}> + </Button>
         </Card>
       
-            <Button className='  btn-link' disabled={stock===0} onClick={() =>onAdd(contador)} >Agregar al carritto</Button>
+            <Button style={{width:'50%'}} className='  btn btn-link' disabled={stock===0} onClick={() =>onAdd(contador)} >Agregar al carritto</Button>
         
         
     </Container>
