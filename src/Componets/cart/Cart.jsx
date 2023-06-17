@@ -29,8 +29,8 @@ const navigate = useNavigate();
     <div className=" col-lg-8">
          {cart.map(product => <CartItem key={product.item.id}  {...product}/>)}
          <div>
-         <h3> Total: ${total}</h3>
-         <h3>Cantidad Total de items: <span style={{color:'green', fontSize:'2rem'}}>{totalQuantity}</span></h3>
+         <h3> Total: ${parseInt(total)}</h3>
+         <h3>Cantidad Total de items: <span style={{color:'green', fontSize:'1.5rem'}}>{totalQuantity}</span></h3>
          </div>
         </div>
          <Container >
